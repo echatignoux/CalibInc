@@ -1,0 +1,27 @@
+##'
+##'
+##'
+##'
+##'
+##' \itemize{
+##' \item \code{site} factor avec 2 niveaux (Melanoma-women--Pancreas-men)
+##' \item \code{dist} factor avec 20 niveaux (d_1--d_9)
+##' \item \code{SRC} factor avec 4 niveaux (A--M)
+##' \item \code{age} numeric (2.5--88.5)
+##' \item \code{N_I} numeric (0--175)
+##' \item \code{N_HC} numeric (0--192)
+##' \item \code{py} numeric (31285--433169.5)
+##' \item \code{pop_WHO} numeric (500--12000)
+##' }
+##' @docType data
+##' @keywords datasets
+##' @name  dt_calib 
+##' @usage data( dt_calib )
+##' @format A data frame with  2664  rows and  8  variables
+NULL
+[1] "c:/R/RPackages/CalibInc"
+(list "" '(("data" . "")) '("data"))
+(list "" '(("data" . "")) '("data"))
+(list "" '(("data" . "")) '("data"))
+(list "" '(("data" . "")) '("data"))
+(list "" '(("data" . "")) '("data"))

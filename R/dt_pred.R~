@@ -1,0 +1,44 @@
+##'
+##'
+##'
+##'
+##'
+##' \itemize{
+##' \item \code{site} factor avec 2 niveaux (Melanoma-women--Pancreas-men)
+##' \item \code{dist} character (01--978)
+##' \item \code{SRC} factor avec 4 niveaux (A--M)
+##' \item \code{age} numeric (2.5--88.5)
+##' \item \code{N_HC} numeric (0--341)
+##' \item \code{py} numeric (NA--NA)
+##' \item \code{pop_WHO} numeric (NA--NA)
+##' }
+##' @docType data
+##' @keywords datasets
+##' @name  dt_pred 
+##' @usage data( dt_pred )
+##' @format A data frame with  14040  rows and  7  variables
+NULL
+[1] "c:/R/RPackages/CalibInc"
+# A tibble: 2,664 x 8
+   site         dist  SRC     age   N_I  N_HC      py pop_WHO
+   <fct>        <fct> <fct> <dbl> <int> <int>   <dbl>   <dbl>
+ 1 Pancreas-men d_1   A       2.5     0     0 186016    12000
+ 2 Pancreas-men d_1   HA      2.5     0     0 186016    12000
+ 3 Pancreas-men d_1   M       2.5     0     0 186016    12000
+ 4 Pancreas-men d_1   H       2.5     0     0 186016    12000
+ 5 Pancreas-men d_1   A       7.5     0     0 196444.   10000
+ 6 Pancreas-men d_1   HA      7.5     0     0 196444.   10000
+ 7 Pancreas-men d_1   M       7.5     0     0 196444.   10000
+ 8 Pancreas-men d_1   H       7.5     0     0 196444.   10000
+ 9 Pancreas-men d_1   A      12.5     0     0 196237     9000
+10 Pancreas-men d_1   HA     12.5     0     0 196237     9000
+# ... with 2,654 more rows
+# A tibble: 6 x 8
+  site         dist  SRC     age   N_I  N_HC      py pop_WHO
+  <fct>        <fct> <fct> <dbl> <int> <int>   <dbl>   <dbl>
+1 Pancreas-men d_1   A       2.5     0     0 186016    12000
+2 Pancreas-men d_1   HA      2.5     0     0 186016    12000
+3 Pancreas-men d_1   M       2.5     0     0 186016    12000
+4 Pancreas-men d_1   H       2.5     0     0 186016    12000
+5 Pancreas-men d_1   A       7.5     0     0 196444.   10000
+6 Pancreas-men d_1   HA      7.5     0     0 196444.   10000
