@@ -30,7 +30,7 @@ Analysis from the application section of the papers
 The use of `CalibInc` package is illustrated in the two following applications. 
 
 1. Prediction of cancer incidence for LOP cancer in men using registry and
-hospitalization data (application section of the paper [1]) : <https://rawgit.com/echatignoux/CalibInc/master/Application/Application.html>.
+hospitalization data (application section of the paper [1]) : <https://echatignoux.github.io/CalibInc/Application.html>.
 
 2. Detailed code and results for the whole process of :
 
@@ -38,7 +38,7 @@ hospitalization data (application section of the paper [1]) : <https://rawgit.co
 * quality assessment of predicted CI and rationale for the criteria to assess which predictions were epidemiologically useful; 
 * mapping after spatial smoothing of the latter predictions;
 
-as detailed in the paper [2] : <https://rawgit.com/echatignoux/CalibInc/master/working_example/working_example.html>.
+as detailed in the paper [2] : <https://echatignoux.github.io/CalibInc/working_examples.html>.
 
 
 References
