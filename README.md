@@ -16,6 +16,8 @@ require(devtools)
 install_github("echatignoux/CalibInc")
 ```
 
+or download the CalibInc_0.2.zip file.
+
 After installation, the package can be loaded into R.
 
 ``` r
