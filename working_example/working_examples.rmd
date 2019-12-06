@@ -1,5 +1,5 @@
 ---
-title: "How to produce sound and informative predictions of incidence at a district level using either healthcare or mortality data in the absence of a national registry: an extensive application for 24 different cancer sites in France."
+title: "How to produce sound predictions of incidence at a district level using either healthcare or mortality data in the absence of a national registry: the example of cancer in France"
 subtitle: A working example
 author: Edouard Chatignoux, Zoé Uhry, Pascale Grosclaude, Marc Colonna, Laurent Remontet
 date: 
