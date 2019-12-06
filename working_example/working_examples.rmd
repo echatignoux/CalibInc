@@ -68,12 +68,13 @@ After installation, the package can be loaded into R.
 library(CalibInc)
 ```
 
-The `tidyverse`, `mgcv`, `spdep` and `INLA` packages are also needed to run the
+The `tidyverse`, `magrittr`, `mgcv`, `spdep` and `INLA` packages are also needed to run the
 following code.
 
 
 ```{r,echo=T}
 library(tidyverse)
+library(magrittr)
 library(mgcv)
 library(spdep)
 library(INLA)
