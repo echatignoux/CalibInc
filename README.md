@@ -4,7 +4,7 @@ CalibInc
 Code and material for the articles *"For a sound use of healthcare
 data in epidemiology: evaluation of a calibration model for count data with
 application to prediction of cancer incidence in areas without cancer
-registry."*[1] and *"How to produce sound and informative predictions of incidence at a district level using either healthcare or mortality data in the absence of a national registry: an extensive application for 24 different cancer sites in France."*[2]
+registry"*[1] and *"How to produce sound predictions of incidence at a district level using either healthcare or mortality data in the absence of a national registry: the example of cancer in France"*[2]
 
 R-package
 ---------
@@ -45,8 +45,8 @@ as detailed in the paper [2] : <https://echatignoux.github.io/CalibInc/working_e
 
 References
 ----------
-1. [É. Chatignoux, L. Remontet, J. Iwaz, M. Colonna, and Z. Uhry, “For a sound use of health care data in epidemiology: evaluation of a calibration model for count data with application to prediction of cancer incidence in areas without cancer registry.,” Biostatistics, vol. 20, no. 3, pp. 452–467, Jul. 2019.](https://academic.oup.com/biostatistics/advance-article/doi/10.1093/biostatistics/kxy012/4956170)
-2. E. Chatignoux, Z. Uhry, P. Grosclaude, M. Colonna, and L. Remontet, “How to produce sound and informative predictions of incidence at a district level using either healthcare or mortality data in the absence of a national registry: an extensive application for 24 different cancer sites in France.,” Manuscript submitted 
+1. [É. Chatignoux, L. Remontet, J. Iwaz, M. Colonna, and Z. Uhry, “For a sound use of health care data in epidemiology: evaluation of a calibration model for count data with application to prediction of cancer incidence in areas without cancer registry”, Biostatistics, vol. 20, no. 3, pp. 452–467, Jul. 2019.](https://academic.oup.com/biostatistics/advance-article/doi/10.1093/biostatistics/kxy012/4956170)
+2. E. Chatignoux, Z. Uhry, P. Grosclaude, M. Colonna, and L. Remontet, “How to produce sound predictions of incidence at a district level using either healthcare or mortality data in the absence of a national registry: the example of cancer in France”, Manuscript submitted 
      for publication, 2020.
 
 
