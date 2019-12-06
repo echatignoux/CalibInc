@@ -613,8 +613,8 @@ and melanoma cancers, respectively, printed below in tables
 For pancreas cancer in men, predictions errors are relatively small
 for HA/I method (all below 10% in absolute value), whereas for the
 other methods, errors are generally moderate, but consistent in some
-districts (PE=17% for district d_2 with A/I method, 18% and -17% for
-districts d_14 and d_15 with H/I, and 18% for district d_20 with M/I
+districts (PE=17% for district d_2 with A/I method, 16% and -17% for
+districts d_14 and d_15 with H/I, and 19% for district d_20 with M/I
 method). 
 
 
@@ -1277,7 +1277,7 @@ SIR_panc%>%rename(id=dist)%>%
         color="RdYlGn",rev=T,limits=c(0.7,1.3))
 ``` 
 
-### Comparison between of smoothed an crude SIR
+### Comparison between smoothed an crude SIR
 
 Compared to the map of "crude" SIR (figure \@ref(fig:crmap)), the map
 of smoothed SIR looks more homogeneous, showing a west-east gradient
