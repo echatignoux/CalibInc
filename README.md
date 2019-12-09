@@ -3,13 +3,13 @@ CalibInc
 
 Code and material for the articles :
 
-* *"For a sound use of healthcare
+* *For a sound use of healthcare
 data in epidemiology: evaluation of a calibration model for count data with
 application to prediction of cancer incidence in areas without cancer
-registry"*[1] 
-* *"How to produce sound predictions of incidence at a district level
+registry*[1] 
+* *How to produce sound predictions of incidence at a district level
   using either healthcare or mortality data in the absence of a
-  national registry: the example of cancer in France"*[2]
+  national registry: the example of cancer in France*[2]
 
 
 R-package
@@ -40,7 +40,7 @@ The use of `CalibInc` package is illustrated in the two following applications.
 1. Prediction of cancer incidence for LOP cancer in men using registry and
 hospitalization data (application section of the paper [1]) : <https://echatignoux.github.io/CalibInc/Application.html>.
 
-2. For pancreatic cancer in men and melanoma in women, Detailed code and results for the whole process of :
+2. For pancreatic cancer in men and melanoma in women, detailed code and results for the whole process of :
 
 * constructing a calibration model to make CI predictions; 
 * quality assessment of predicted CI and rationale for the criteria to assess which predictions were epidemiologically useful; 
