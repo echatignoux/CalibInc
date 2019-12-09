@@ -1,5 +1,7 @@
 ---
-title: "How to produce sound predictions of incidence at a district level using either healthcare or mortality data in the absence of a national registry: the example of cancer in France"
+title: |  
+    | How to produce sound predictions of incidence at a district level using either healthcare or mortality data in the absence of a national registry: the example of cancer in France
+    | <font size="4">  *Manuscript submitted for publication, 2020*  </font> 
 subtitle: A working example
 author: Edouard Chatignoux, Zoé Uhry, Pascale Grosclaude, Marc Colonna, Laurent Remontet
 date: 
@@ -37,11 +39,10 @@ knitr::opts_chunk$set(echo=T, fig.align="center",cache=T)
 
 ``` 
 
-
 # Overview#
 
 This document illustrates the application of the three-stage
-methodology using national non-registry data to predict cancer
+methodology using national healthcare (or mortality) data to predict cancer
 incidence (CI) in geographical areas without an cancer registry. The
 method and the R code used is illustrated for two cancer sites: pancreatic cancer
 in men and melanoma in women over the 2007-2015 period.
@@ -49,13 +50,19 @@ This document details the different steps of calibration, validation and
 post-processing of the data. 
 Its organisation follows the method section of the article.
 
+**Note that, in order to comply with diffusion legal constrains, the
+numbers of cancer and HC cases in the datasets were slightly altered ;
+so the results obtained here slightly differ from those presented in
+the article.**
+
 
 R-package
 ---------
 
 The material and R code used in this application are part of the 
 R-package `CalibInc`, available in Github. 
-Use [devtools](https://github.com/hadley/devtools) to install the package: 
+Use the package [devtools](https://github.com/hadley/devtools) to
+install the package CalibInc: 
 
 ```{r,echo=T,eval=F}
 require(devtools)
@@ -68,8 +75,10 @@ After installation, the package can be loaded into R.
 library(CalibInc)
 ```
 
-The `tidyverse`, `magrittr`, `mgcv`, `spdep` and `INLA` packages are also needed to run the
-following code.
+The `tidyverse`, `magrittr`, `mgcv` and `spdep` packages are also needed 
+to run the following code. The spatial smoothing is done using the
+`R-INLA` package (see <http://www.r-inla.org> for installation
+instruction). 
 
 
 ```{r,echo=T}
@@ -95,9 +104,6 @@ in the table `dt_calib`.
 To predict incidence in all districts, we need  HC data for all the
 French districts. These data are in the table `dt_pred`.
 
-Note that, in order to comply with diffusion constrains,
-the numbers of cancer and HC cases in the datasets were slightly
-altered.
 
 # Calibration step#
 
@@ -108,41 +114,19 @@ cancer registry, in the number of cancer cases (`N_I`), the number of
 patients retrieved in HC data (`N_HC`), aggregated by cancer cause (`site`),
 district (`dist`), HC source (`SRC`) and 5 years age groups
 (column `age` is the median of age group). Additional columns `py` and
-`pop_WHO` respectively refer to the number of person-year and to the
+`pop_WHO` respectively refer to the number of person-year (sum over
+period 2007-2015) and to the
 standard WHO population of 1960.
 
 The structure of the data is presented below:
 
 ```{r}
+set.seed(200)
 dt_calib%>%sample_n(5)
 
 ``` 
 
 ##  Evaluation of the calibration model ##
-
-
-```{r,eval=F,echo=F}
-
-age_fltr<-dt_calib%>%
-  select(-SRC,-N_HC)%>%
-  unique()%>%
-  group_by(site,age)%>%
-  summarise(N_I=sum(N_I))%>%
-  group_by(site)%>%
-  mutate(N_I=cumsum(N_I))%>%
-  filter(N_I>5)%>%
-  slice(1)%>%
-  select(-N_I)%>%
-  rename(age_fltr=age)
-
-
-``` 
-
-
-<!-- The calibration model (model 1 in the manuscript) requires the lo of -->
-<!-- incident cancer cases to be introduced as an offset in the -->
-<!-- model. Thus, rows with no incident cancer cases are not used to -->
-<!-- evaluate the calibration model.  -->
 
 ###  Estimation ###
 
@@ -318,7 +302,7 @@ pancreatic cancer in men than for melanoma in women.
 
 The visual impression is confirmed by the values of the standard
 deviation $\sigma_d$ of the district random effects, which are
-obtained via the `gam.vcomp` function:
+obtained via the `gam.vcomp` function (line '(dist)'):
 
 ```{r,echo=T}
 gam.vcomp(m_mela_A)
@@ -466,7 +450,7 @@ dt_SIR_mela_H<-dt_pred_mela_H%>%
 ### Standardized incidence rate ###
 
 Standardized incidence rates $T_j$ are calculated in a given area $j$ as the sum
-of incidence rate by multiplied by the person year of a standard
+of incidence rate multiplied by the person year of a standard
 population $py^r_{i}$ : $\hat{T}_j=\sum_i
 \frac{\hat{I}_{ij}}{py_{ij}}\times py^r_{i}=\sum_i \hat{I}_{ij}\times
 \frac{py^r_{i}}{py_{ij}}$. 
@@ -486,7 +470,7 @@ CalibInc(mod=m_mela_H,pred=dt_mela_H_T,weight=w,aggregate=~dist)
 
 
 
-# Evaluation of the quality of the predictions and of their usefulness for epidemiology: districts with a cancer register
+# Evaluation of the quality of the predictions and of their usefulness for epidemiology: 
 
 To evaluate the quality of the predictions, we estimate, in the
 districts with registers, the gaps between predicted CI and observed
@@ -586,8 +570,9 @@ cv_panc<-dt_panc%>%
 ``` 
 </details>
 
-```{r,echo=F}
-
+<details>
+  <summary>Code to compute complete cross-validation - melanoma, women</summary>
+```{r}
 cv_mela<-dt_mela%>%
   group_by(dist,SRC)%>%
   nest()%>%
@@ -605,6 +590,7 @@ cv_mela<-dt_mela%>%
   mutate(PE=100*(pred-N_I)/N_I)
 
 ``` 
+</details>
 
 The results are stored in tables `cv_panc` and `cv_mela` for pancreas
 and melanoma cancers, respectively, printed below in tables
@@ -658,7 +644,7 @@ val_panc%>%
   kable_styling("hover", full_width = F)%>%
   add_header_above(c(" "=2, "A/I" = 3,"H/I" = 3,"HA/I" = 3,"M/I" = 3),escape = F)%>%
   row_spec(nrow(val_panc), bold = T)%>%
-  footnote(general = "The total column gives the total number of observed and predicted cancer cases. In the PE column, maximum and median absolute prediction error is reported.",
+  footnote(general = 'Note: At the line "Total", maximum and median absolute prediction error is reported in the PE column.',
            footnote_as_chunk = T, title_format = c("italic", "underline")
            )
 
@@ -714,6 +700,10 @@ val_mela%>%
            )
 
 ``` 
+
+> The following section presents the code to draw graphical
+> representations of cross-validation results that are not mentioned in the 
+> article. This section in not essential and may be skipped by the reader.
 
 
 Predictions errors in cross-validation may advantageously be plotted
@@ -959,7 +949,7 @@ SIR_mela_cv%>%
 ## Comparison between the variability of the HC/I ratio to the geographical variability of incidence over the  districts {#sp} 
 
 The geographical variability of incidence over the districts
-($\sigma_k$), obtained by fitting a Poisson mixed
+($\sigma_k$) is obtained by fitting a Poisson mixed
 model to observed incidence rate, with age introduced as a continuous
 effect (modelled with a penalized regression spline) and district as a
 random intercept (standard deviation $\sigma_k$).
@@ -1038,7 +1028,7 @@ errors in all districts (below 15%), and the method is eligible for
 predictions, labelled A++. For A/I, M/I and H/I method, predictions in
 respectively one, one and two districts have intermediate error size
 (between 15 and 30%), and are not eligible regarding this
-criteria. Looking at the signal to noise trade-off (i.e. $\sigma_d$
+criteria. However, looking at the signal to noise trade-off (i.e. $\sigma_d$
 v.s. $\sigma_k$), the variability of the A/I ratio between district
 remains small compared to the geographical variation of incidence
 (0.02 v.s. 0.08), and the method is suitable for prediction
@@ -1061,7 +1051,7 @@ predictions error. Useful prediction of incidence, as detailed in section
 \@ref(secpred), can thus be produced in all the districts using the
 HA/I method. 
 
-In order to visualise geographical gradient of incidence, we may
+In order to visualise geographical gradient of predicted incidence, we may
 represent standardized incidence ratio on a map.
 
 ## Prediction of incidence and SIR calculation
@@ -1119,7 +1109,7 @@ SIR_panc%>%rename(id=dist)%>%## id is the binding key between the spatial coordi
 
 ### Setting up BYM2 model
 
-The bayesian spatial model used to smooth the SIR is evaluated with
+The bayesian spatial model used to smooth the SIR is fitted with
 the `INLA` package, using the "bym2" prior.
 
 To specify the "bym2" prior, we first need to create a matrix
