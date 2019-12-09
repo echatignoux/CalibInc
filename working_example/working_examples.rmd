@@ -1231,11 +1231,15 @@ fit_bym2$summary.hyperpar
 
 For $\sigma$, the posterior are given in terms of precision
 ($1/\sigma^2$). To convert this on the standard error scale, we can
-use the `inla.contrib.sd` utility function:
+sample the precision from its posterior distribution, and convert it
+to the standard error scale:
 
 
 ```{r}
-inla.contrib.sd(fit_bym2)$hyper
+post_prec<-fit_bym2$marginals.hyperpar$"Precision for dist_rank"
+post_sd<-inla.rmarginal(1000,inla.tmarginal(function(x) 1/sqrt(x), post_prec))
+c(mean(post_sd),quantile(post_sd,p=c(0.025,0.975)))
+
 ``` 
 
 The estimate $\sigma$ of the variability of the SIR across all France's
