@@ -644,7 +644,7 @@ val_panc%>%
   kable_styling("hover", full_width = F)%>%
   add_header_above(c(" "=2, "A/I" = 3,"H/I" = 3,"HA/I" = 3,"M/I" = 3),escape = F)%>%
   row_spec(nrow(val_panc), bold = T)%>%
-  footnote(general = 'Note: At the line "Total", maximum and median absolute prediction error is reported in the PE column.',
+  footnote(general = 'At the line "Total", maximum and median absolute prediction error is reported in the PE column.',
            footnote_as_chunk = T, title_format = c("italic", "underline")
            )
 
@@ -695,7 +695,7 @@ val_mela%>%
   kable_styling("hover", full_width = F)%>%
   add_header_above(c(" "=2, "A/I" = 3,"H/I" = 3,"HA/I" = 3,"M/I" = 3),escape = F)%>%
   row_spec(nrow(val_mela), bold = T)%>%
-  footnote(general = "The total column gives the total number of observed and predicted cancer cases. In the PE column, maximum and median absolute prediction error are reported.",
+  footnote(general = 'At the line "Total", maximum and median absolute prediction error is reported in the PE column.',
            footnote_as_chunk = T, title_format = c("italic", "underline")
            )
 
