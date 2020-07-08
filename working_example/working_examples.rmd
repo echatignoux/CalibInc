@@ -4,7 +4,7 @@ title: |
     | <font size="4">  *Manuscript submitted for publication, 2020*  </font> 
 subtitle: A working example
 author: Edouard Chatignoux, Zoé Uhry, Pascale Grosclaude, Marc Colonna, Laurent Remontet
-date: 
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   bookdown::html_document2:
     <!-- css: style.css  -->
@@ -1427,6 +1427,37 @@ SIR_panc%>%
   
 ``` 
 
+## National predictions
+
+Predictions of incidence at a national level are done specifying an
+intercept as the aggregation level (`aggregate=~1`).
+To obtain the annual mean number of incident cases over the 2007-2015
+period, we furthermore added a 1/8 weight to `CalibInc` function.
+
+Whatever the proxy used, the predictions are close to each other (maximal
+difference of 6%), even though M and H methods were not suitable proxies for
+district level predictions. It should however be noted that, given
+the higher variability of the H/I and M/I ratios, national predictions using H
+and M proxies are less precise than predictions using HA or A proxies.
+
+
+```{r}
+dt_panc_HA<-dt_pred%>%filter(site=="Pancreas-men",SRC=="HA")
+dt_panc_H<-dt_pred%>%filter(site=="Pancreas-men",SRC=="H")
+dt_panc_A<-dt_pred%>%filter(site=="Pancreas-men",SRC=="A")
+dt_panc_M<-dt_pred%>%filter(site=="Pancreas-men",SRC=="M")
+
+## Prediction of total number of cases by districts + IP
+CalibInc(mod=m_panc_HA,pred=dt_panc_HA,aggregate=~1,weight=1/8)%>%
+  LogNormPI()
+CalibInc(mod=m_panc_H,pred=dt_panc_H,aggregate=~1,weight=1/8)%>%
+  LogNormPI()
+CalibInc(mod=m_panc_A,pred=dt_panc_A,aggregate=~1,weight=1/8)%>%
+  LogNormPI()
+CalibInc(mod=m_panc_M,pred=dt_panc_M,aggregate=~1,weight=1/8)%>%
+  LogNormPI()
+
+``` 
 
 # References #
 
